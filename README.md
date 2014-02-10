@@ -115,7 +115,7 @@ Configuration is a crucial feature and we are working on it. Ideas are welcome!
  * Support more JVM languages
 
 ## Thanks
-Many thanks to Intuit Data Servies for the support!
+Many thanks to Intuit Data Services for the support!
 
 [![intuit](http://about.intuit.com/about_intuit/press_room/intuit_logos/intuit_blue.gif)](http://intuit.com)
 
