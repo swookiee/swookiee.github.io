@@ -114,6 +114,11 @@ Configuration is a crucial feature and we are working on it. Ideas are welcome!
  * Introduce Simple Configuration API
  * Support more JVM languages
 
+## Thanks
+Many thanks to Intuit Data Servies for the support!
+
+[![intuit](http://about.intuit.com/about_intuit/press_room/intuit_logos/intuit_blue.gif)](http://intuit.com)
+
 ## License
 The code is published under the terms of the [Eclipse Public License, version 1.0](http://www.eclipse.org/legal/epl-v10.html).
 
