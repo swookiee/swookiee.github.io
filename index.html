@@ -32,19 +32,21 @@
 <h2>
 <a name="what-is-swookiee" class="anchor" href="#what-is-swookiee"><span class="octicon octicon-link"></span></a>What is swookiee*</h2>
 
-<p>swookiee is a shaved wookiee and looks like this: <img src="http://www.gravatar.com/avatar/62cf8eb12029b66dfa837efa365f12b4?s=40" alt="shaved wookiee"></p>
+<p>swookiee is a shaved wookiee and looks like this:</p>
 
-<p>It basically is a JVM Runtime for REST Services. It is lightweight (~13 MB) and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a Jersey 2.5, Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.</p>
+<p><img src="http://www.gravatar.com/avatar/62cf8eb12029b66dfa837efa365f12b4?s=80" alt="shaved wookiee"></p>
+
+<p>swookiee basically is a JVM Runtime for REST Services. It is lightweight (~13 MB) and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a Jersey 2.5, Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.</p>
 
 <p>Our main goals are:</p>
 
 <ul>
-<li>Simplify exposing REST Services in the JVM World</li>
-<li>Polyglot: Solve problems in best fit language</li>
-<li>Reduce mandatory infrastructure and architectural knowledge from developers</li>
-<li>Define boundaries and APIs</li>
-<li>Enable deployment on artifact level (very simple OSGi <a href="https://github.com/osgi/design/tree/master/rfcs/rfc0182">RFC-182 implementation</a>)</li>
-<li>Increase transparency through direct metrics, graphite and JSON logging support</li>
+<li>simplify exposing REST Services in the JVM</li>
+<li>JVM-Polyglot: Solve problems in best fit language</li>
+<li>reduce mandatory infrastructure and architectural knowledge from developers</li>
+<li>define boundaries and APIs</li>
+<li>enable deployment on artifact level (very simple OSGi <a href="https://github.com/osgi/design/tree/master/rfcs/rfc0182">RFC-182 implementation</a>)</li>
+<li>increase transparency through direct metrics, graphite and JSON logging support</li>
 </ul><h2>
 <a name="build--start" class="anchor" href="#build--start"><span class="octicon octicon-link"></span></a>Build &amp; start</h2>
 
@@ -52,14 +54,20 @@
 
 <pre lang="shell"><code>cd com.swookiee.runtime
 mvn clean install
+
 cd com.swookiee.runtime
 mvn exec:exec
 </code></pre>
 
 <h2>
+<a name="web-console" class="anchor" href="#web-console"><span class="octicon octicon-link"></span></a>Web Console</h2>
+
+<p>When swookiee is up and running the Web Console can be accessed via <a href="http://localhost:8080/system/console"><code>http://localhost:8080/system/console</code></a>. The default credentials are <code>admin:admin123</code>.</p>
+
+<h2>
 <a name="rest-services" class="anchor" href="#rest-services"><span class="octicon octicon-link"></span></a>REST Services</h2>
 
-<p>To expose a REST service in swookiee you can describe the REST API in a simple interface:</p>
+<p>To expose a REST service in swookiee you can describe the REST API with a simple interface:</p>
 
 <div class="highlight highlight-java"><pre><span class="nd">@Path</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">)</span>
 <span class="nd">@Produces</span><span class="o">(</span><span class="n">APPLICATION_JSON</span><span class="o">)</span>
@@ -80,12 +88,12 @@ mvn exec:exec
 <span class="o">}</span>
 </pre></div>
 
-<p>A REST service will be exposed using the <a href="https://github.com/hstaudacher/osgi-jax-rs-connector">OSGi - JAX-RS Connector</a>. So every JAX-RS component exposed as a OSGi service will also be published via Jersey. A Jersey user guide can be found <a href="https://jersey.java.net/documentation/latest">here</a></p>
+<p>A REST service will be exposed using the <a href="https://github.com/hstaudacher/osgi-jax-rs-connector">OSGi - JAX-RS Connector</a>. Thus, every JAX-RS component which is an available OSGi service will also be published via Jersey. You will find a deteiles Jersey user guide <a href="https://jersey.java.net/documentation/latest">here</a>.</p>
 
 <h2>
 <a name="filters-exception-mapping-" class="anchor" href="#filters-exception-mapping-"><span class="octicon octicon-link"></span></a>Filters, Exception Mapping, ...</h2>
 
-<p>In addition to exposing services you might need to register Filter (e.g. for CORS). This can be done via <code>ContainerResponseFilter</code> and <code>ContainerRequestFilter</code> implementations:</p>
+<p>In addition to provide services you might need to register Filter (e.g. for CORS). This can be done via <code>ContainerResponseFilter</code> and <code>ContainerRequestFilter</code> implementations:</p>
 
 <div class="highlight highlight-java"><pre><span class="nd">@Component</span>
 <span class="nd">@Provider</span>
@@ -107,7 +115,7 @@ mvn exec:exec
 <span class="o">}</span>
 </pre></div>
 
-<p>In order to register a exception mapper you have to implement the <code>ExceptionMapper</code>:</p>
+<p>In order to register an exception mapper you have to implement the <code>ExceptionMapper</code> interface:</p>
 
 <div class="highlight highlight-java"><pre><span class="nd">@Component</span>
 <span class="nd">@Provider</span>
@@ -124,13 +132,15 @@ mvn exec:exec
 <h2>
 <a name="json-logging-output" class="anchor" href="#json-logging-output"><span class="octicon octicon-link"></span></a>JSON logging output</h2>
 
-<p>In case you have a logstash and kibana stack to analyze your logs you might want to use JSON as output format. To enable this you can set the property <code>productionLogging</code> to <code>true</code>.</p>
+<p>In case you want to use logstash and kibana to analyze your logs you might want to use JSON as an output format.
+This can be achieved through setting the property <code>productionLogging</code> to <code>true</code>.</p>
 
 <h2>
 <a name="pushing-metrics-to-graphite" class="anchor" href="#pushing-metrics-to-graphite"><span class="octicon octicon-link"></span></a>Pushing metrics to graphite</h2>
 
-<p>(Insert screenshots here)
-Every published REST interface will be monitored via metrics. In addition basic JVM statistics will be published. In order to configure the graphite end point you can set the properties <code>graphiteHost</code> and <code>graphitePort</code>. By default port <code>2003</code> will be used for <code>graphitePort</code>.</p>
+<p>TODO
+(Insert screenshots here)
+Every published REST interface will be monitored via metrics. In addition basic JVM statistics will be published. In order to configure the graphite endpoint you can set the properties <code>graphiteHost</code> and <code>graphitePort</code>. The default port <code>2003</code> will be used for <code>graphitePort</code> if not defined.</p>
 
 <h2>
 <a name="deployment-and-runtime-management-via-rest" class="anchor" href="#deployment-and-runtime-management-via-rest"><span class="octicon octicon-link"></span></a>Deployment and runtime management via REST</h2>
@@ -140,10 +150,12 @@ Every published REST interface will be monitored via metrics. In addition basic 
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<p>Configuration is a crucial feature and we are working on it. Ideas are welcome!</p>
+<p>TODO</p>
 
 <h2>
-<a name="archetypes--tooling" class="anchor" href="#archetypes--tooling"><span class="octicon octicon-link"></span></a>Archetype(s) &amp; Tooling</h2>
+<a name="archetypes--tooling--samples" class="anchor" href="#archetypes--tooling--samples"><span class="octicon octicon-link"></span></a>Archetype(s) &amp; Tooling &amp; Samples</h2>
+
+<p>TODO</p>
 
 <h3>
 <a name="eclipse" class="anchor" href="#eclipse"><span class="octicon octicon-link"></span></a>Eclipse</h3>
@@ -156,8 +168,8 @@ Every published REST interface will be monitored via metrics. In addition basic 
 
 <ul>
 <li>provide rpm, deb and other packages</li>
-<li>Introduce Simple Configuration API</li>
-<li>Support more JVM languages</li>
+<li>support more JVM languages</li>
+<li>documentation and samples</li>
 </ul><h2>
 <a name="thanks" class="anchor" href="#thanks"><span class="octicon octicon-link"></span></a>Thanks</h2>
 
