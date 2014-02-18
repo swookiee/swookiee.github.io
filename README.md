@@ -109,7 +109,61 @@ Every published REST interface will be monitored via metrics. In addition basic 
 [RFC-182](https://github.com/osgi/design/tree/master/rfcs/rfc0182)
 
 ## Configuration
-TODO
+The Swookiee Runtime can be configured programatically and via the UI of the Web Console. 
+
+### Programmatic Configuration
+The programmatic configuration can be done via an API on top of the OSGi Configuration Admin. The full sample can be found [here](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration)
+
+Define a POJO with the components you want to configure. In this case we want to change the admin user credentials and the graphite reporter configuration:
+```java
+public class Configuration {
+    public AdminUserConfiguration adminUserConfiguration;
+    public GraphiteReporterConfiguration graphiteReporterConfiguration;
+}
+```
+
+Define a YAML file which matches the attributes of your POJO. Additionally set the desired parameter values:
+```yml
+adminUserConfiguration:
+  username: "admin"
+  password: "admin42"
+    
+graphiteReporterConfiguration:
+  graphiteHost: localhost
+  graphitePort: 2003
+  reportingIntervalInSeconds : 42
+  reportingEnabled: true
+  reportingPrefix: "configDemo"
+```
+
+In order to set your configuration values to the addressed components you can create a Declarative Service Component which is then using `ConfigurationUtils` to set your configuration parameters
+```java
+@Component
+public class ConfigurationProviderSample {
+
+    private ConfigurationAdmin configAdmin;
+
+    @Activate
+    public void activate(final BundleContext bundleContext) {
+
+        final URL configurationFile = bundleContext.getBundle().getResource("Configuration.yaml");
+        ConfigurationUtils.applyConfiguration(Configuration.class, configurationFile, configAdmin);
+
+    }
+
+    @Reference
+    public void setConfigurationAdmin(final ConfigurationAdmin configurationAdmin) {
+        this.configAdmin = configurationAdmin;
+    }
+
+    public void unsetConfigurationAdmin(final ConfigurationAdmin configurationAdmin) {
+        this.configAdmin = null;
+    }
+}
+```
+
+### UI
+Most configuration parameters can be controlled via the Web Console: [http://localhost:8080/system/console/configMgr](http://localhost:8080/system/console/configMgr)
 
 ## Archetype(s) & Tooling & Samples
 TODO
