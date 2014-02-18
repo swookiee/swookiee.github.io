@@ -150,7 +150,65 @@ Every published REST interface will be monitored via metrics. In addition basic 
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<p>TODO</p>
+<p>The Swookiee Runtime can be configured programatically and via the UI of the Web Console. </p>
+
+<h3>
+<a name="programmatic-configuration" class="anchor" href="#programmatic-configuration"><span class="octicon octicon-link"></span></a>Programmatic Configuration</h3>
+
+<p>The programmatic configuration can be done via an API on top of the OSGi Configuration Admin. The full sample can be found <a href="https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration">here</a></p>
+
+<p>Define a POJO with the components you want to configure. In this case we want to change the admin user credentials and the graphite reporter configuration:</p>
+
+<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Configuration</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">AdminUserConfiguration</span> <span class="n">adminUserConfiguration</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">GraphiteReporterConfiguration</span> <span class="n">graphiteReporterConfiguration</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>Define a YAML file which matches the attributes of your POJO. Additionally set the desired parameter values:</p>
+
+<div class="highlight highlight-yml"><pre><span class="l-Scalar-Plain">adminUserConfiguration</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="s">"admin"</span>
+  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="s">"admin42"</span>
+
+<span class="l-Scalar-Plain">graphiteReporterConfiguration</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">graphiteHost</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
+  <span class="l-Scalar-Plain">graphitePort</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2003</span>
+  <span class="l-Scalar-Plain">reportingIntervalInSeconds</span> <span class="p-Indicator">:</span> <span class="l-Scalar-Plain">42</span>
+  <span class="l-Scalar-Plain">reportingEnabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+  <span class="l-Scalar-Plain">reportingPrefix</span><span class="p-Indicator">:</span> <span class="s">"configDemo"</span>
+</pre></div>
+
+<p>In order to set your configuration values to the addressed components you can create a Declarative Service Component which is then using <code>ConfigurationUtils</code> to set your configuration parameters</p>
+
+<div class="highlight highlight-java"><pre><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConfigurationProviderSample</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">ConfigurationAdmin</span> <span class="n">configAdmin</span><span class="o">;</span>
+
+    <span class="nd">@Activate</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">activate</span><span class="o">(</span><span class="kd">final</span> <span class="n">BundleContext</span> <span class="n">bundleContext</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="kd">final</span> <span class="n">URL</span> <span class="n">configurationFile</span> <span class="o">=</span> <span class="n">bundleContext</span><span class="o">.</span><span class="na">getBundle</span><span class="o">().</span><span class="na">getResource</span><span class="o">(</span><span class="s">"Configuration.yaml"</span><span class="o">);</span>
+        <span class="n">ConfigurationUtils</span><span class="o">.</span><span class="na">applyConfiguration</span><span class="o">(</span><span class="n">Configuration</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">configurationFile</span><span class="o">,</span> <span class="n">configAdmin</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Reference</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setConfigurationAdmin</span><span class="o">(</span><span class="kd">final</span> <span class="n">ConfigurationAdmin</span> <span class="n">configurationAdmin</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">configAdmin</span> <span class="o">=</span> <span class="n">configurationAdmin</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">unsetConfigurationAdmin</span><span class="o">(</span><span class="kd">final</span> <span class="n">ConfigurationAdmin</span> <span class="n">configurationAdmin</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">configAdmin</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<h3>
+<a name="ui" class="anchor" href="#ui"><span class="octicon octicon-link"></span></a>UI</h3>
+
+<p>Most configuration parameters can be controlled via the Web Console: <a href="http://localhost:8080/system/console/configMgr">http://localhost:8080/system/console/configMgr</a></p>
 
 <h2>
 <a name="archetypes--tooling--samples" class="anchor" href="#archetypes--tooling--samples"><span class="octicon octicon-link"></span></a>Archetype(s) &amp; Tooling &amp; Samples</h2>
@@ -189,6 +247,16 @@ Every published REST interface will be monitored via metrics. In addition basic 
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-48180947-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
