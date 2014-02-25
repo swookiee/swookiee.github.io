@@ -136,13 +136,6 @@ mvn exec:exec
 This can be achieved through setting the property <code>productionLogging</code> to <code>true</code>.</p>
 
 <h2>
-<a name="pushing-metrics-to-graphite" class="anchor" href="#pushing-metrics-to-graphite"><span class="octicon octicon-link"></span></a>Pushing metrics to graphite</h2>
-
-<p>TODO
-(Insert screenshots here)
-Every published REST interface will be monitored via metrics. In addition basic JVM statistics will be published. In order to configure the graphite endpoint you can set the properties <code>graphiteHost</code> and <code>graphitePort</code>. The default port <code>2003</code> will be used for <code>graphitePort</code> if not defined.</p>
-
-<h2>
 <a name="deployment-and-runtime-management-via-rest" class="anchor" href="#deployment-and-runtime-management-via-rest"><span class="octicon octicon-link"></span></a>Deployment and runtime management via REST</h2>
 
 <p><a href="https://github.com/osgi/design/tree/master/rfcs/rfc0182">RFC-182</a></p>
@@ -150,7 +143,7 @@ Every published REST interface will be monitored via metrics. In addition basic 
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<p>The Swookiee Runtime can be configured programatically and via the UI of the Web Console. </p>
+<p>The Swookiee Runtime can be configured programmatically and via the UI of the Web Console. </p>
 
 <h3>
 <a name="programmatic-configuration" class="anchor" href="#programmatic-configuration"><span class="octicon octicon-link"></span></a>Programmatic Configuration</h3>
@@ -209,6 +202,54 @@ Every published REST interface will be monitored via metrics. In addition basic 
 <a name="ui" class="anchor" href="#ui"><span class="octicon octicon-link"></span></a>UI</h3>
 
 <p>Most configuration parameters can be controlled via the Web Console: <a href="http://localhost:8080/system/console/configMgr">http://localhost:8080/system/console/configMgr</a></p>
+
+<h2>
+<a name="pushing-metrics-to-graphite" class="anchor" href="#pushing-metrics-to-graphite"><span class="octicon octicon-link"></span></a>Pushing metrics to graphite</h2>
+
+<p>Every published REST interface will be monitored via metrics. In addition basic JVM statistics will be collected. In order to configure the graphite reporter you can configure various settings:</p>
+
+<div class="highlight highlight-yml"><pre><span class="l-Scalar-Plain">graphiteReporterConfiguration</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">graphiteHost</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
+  <span class="l-Scalar-Plain">graphitePort</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2003</span>
+  <span class="l-Scalar-Plain">reportingIntervalInSeconds</span> <span class="p-Indicator">:</span> <span class="l-Scalar-Plain">42</span>
+  <span class="l-Scalar-Plain">reportingEnabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+  <span class="l-Scalar-Plain">reportingPrefix</span><span class="p-Indicator">:</span> <span class="s">"configDemo"</span>
+</pre></div>
+
+<p>Example Screenshot of some made up traffic:</p>
+
+<p><img src="https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/graphite.png" alt="graphite"></p>
+
+<h2>
+<a name="swagger" class="anchor" href="#swagger"><span class="octicon octicon-link"></span></a>Swagger</h2>
+
+<p>The above described REST Resource can be enriched using <code>swagger-annotations</code>. The full sample can be found <a href="https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.swagger">here</a>.</p>
+
+<p>We could add the <code>@Api</code> and <code>@ApiOperation</code> annotations to our sample service:</p>
+
+<div class="highlight highlight-java"><pre><span class="nd">@Path</span><span class="o">(</span><span class="n">Status</span><span class="o">.</span><span class="na">PATH</span><span class="o">)</span>
+<span class="nd">@Produces</span><span class="o">(</span><span class="n">APPLICATION_JSON</span><span class="o">)</span>
+<span class="nd">@Api</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="na">PATH</span><span class="o">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">"Returns a status"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Status</span> <span class="o">{</span>
+
+    <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">PATH</span> <span class="o">=</span> <span class="s">"/status"</span><span class="o">;</span>
+
+    <span class="nd">@GET</span>
+    <span class="nd">@ApiOperation</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"Ping the Status API to receive a StatusObject"</span><span class="o">,</span> <span class="n">response</span> <span class="o">=</span> <span class="n">StatusObject</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">StatusObject</span> <span class="nf">ping</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>The following steps are important to let swookiee deliver you swagger api documentation:</p>
+
+<ol>
+<li>Make sure you have the <code>maven-swagger-plugin</code> configured properly and you are able to see generated swagger json files? Also make sure that the <code>&lt;basePath&gt;/services&lt;/basePath&gt;</code> is set according to your configuration. Otherwise you won’t be able to test you API.</li>
+<li>Is the generated json part of your bundle/artefact/<code>.jar</code>?</li>
+<li>Add the <code>X-Swagger-Documentation</code> header in you <code>MANIFEST.MF</code> or your <code>maven-bundle-plugin</code> configuration to point to the documentation folder inside the <code>jar</code>, such as: <code>X-Swagger-Documentation: /swagger</code>. Additionally change the <code>Bundle-Classpath</code> to include the given folder.</li>
+</ol><p>After installing the bundle you will find the <code>swagger-ui</code> under <code>http://localhost:8080/apidocs/api</code>. Click on the small swookiee icon to see your documentation and test your API.</p>
+
+<p>Screenshot of the sample:
+<img src="https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/swagger.png" alt="swagger"></p>
 
 <h2>
 <a name="archetypes--tooling--samples" class="anchor" href="#archetypes--tooling--samples"><span class="octicon octicon-link"></span></a>Archetype(s) &amp; Tooling &amp; Samples</h2>
