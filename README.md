@@ -207,9 +207,9 @@ Screenshot of the sample:
 
 ## Archetype(s) & Tooling & Samples
 ### Samples & Archetype
-* [Configuration](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration).
-* [Swagger](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.swagger).
-* [Archetype & Sample](https://github.com/swookiee/com.swookiee.archetype)
+* [Configuration](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration)
+* [Swagger](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.swagger)
+* [Archetype & Simple REST Service](https://github.com/swookiee/com.swookiee.archetype)
 
 ### Eclipse
 
