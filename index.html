@@ -216,9 +216,8 @@ This can be achieved through setting the property <code>productionLogging</code>
   <span class="l-Scalar-Plain">reportingPrefix</span><span class="p-Indicator">:</span> <span class="s">"configDemo"</span>
 </pre></div>
 
-<p>Example Screenshot of some made up traffic:</p>
-
-<p><img src="https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/graphite.png" alt="graphite"></p>
+<p>Example Screenshot of some made up traffic:
+<img src="https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/graphite.png" alt="graphite"></p>
 
 <h2>
 <a name="swagger" class="anchor" href="#swagger"><span class="octicon octicon-link"></span></a>Swagger</h2>
@@ -244,8 +243,8 @@ This can be achieved through setting the property <code>productionLogging</code>
 
 <ol>
 <li>Make sure you have the <code>maven-swagger-plugin</code> configured properly and you are able to see generated swagger json files? Also make sure that the <code>&lt;basePath&gt;/services&lt;/basePath&gt;</code> is set according to your configuration. Otherwise you won’t be able to test you API.</li>
-<li>Is the generated json part of your bundle/artefact/<code>.jar</code>?</li>
-<li>Add the <code>X-Swagger-Documentation</code> header in you <code>MANIFEST.MF</code> or your <code>maven-bundle-plugin</code> configuration to point to the documentation folder inside the <code>jar</code>, such as: <code>X-Swagger-Documentation: /swagger</code>. Additionally change the <code>Bundle-Classpath</code> to include the given folder.</li>
+<li>Is the generated json part of your bundle/artefact/<code>.jar</code>? Is the folder accessable from within the Bundle?  Set the  the <code>Bundle-Classpath</code> to include the documentation folder.</li>
+<li>Add the <code>X-Swagger-Documentation</code> header in you <code>MANIFEST.MF</code> or your <code>maven-bundle-plugin</code> configuration to point to the documentation folder inside the <code>jar</code>, such as: <code>X-Swagger-Documentation: /swagger</code>.</li>
 </ol><p>After installing the bundle you will find the <code>swagger-ui</code> under <code>http://localhost:8080/apidocs/api</code>. Click on the small swookiee icon to see your documentation and test your API.</p>
 
 <p>Screenshot of the sample:
@@ -254,9 +253,14 @@ This can be achieved through setting the property <code>productionLogging</code>
 <h2>
 <a name="archetypes--tooling--samples" class="anchor" href="#archetypes--tooling--samples"><span class="octicon octicon-link"></span></a>Archetype(s) &amp; Tooling &amp; Samples</h2>
 
-<p>TODO</p>
-
 <h3>
+<a name="samples--archetype" class="anchor" href="#samples--archetype"><span class="octicon octicon-link"></span></a>Samples &amp; Archetype</h3>
+
+<ul>
+<li><a href="https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration">Configuration</a></li>
+<li><a href="https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.swagger">Swagger</a></li>
+<li><a href="https://github.com/swookiee/com.swookiee.archetype">Archetype &amp; Simple REST Service</a></li>
+</ul><h3>
 <a name="eclipse" class="anchor" href="#eclipse"><span class="octicon octicon-link"></span></a>Eclipse</h3>
 
 <h3>
@@ -267,7 +271,7 @@ This can be achieved through setting the property <code>productionLogging</code>
 
 <ul>
 <li>provide rpm, deb and other packages</li>
-<li>support more JVM languages</li>
+<li>more JVM languages? (see <a href="https://github.com/swookiee/com.swookiee.runtime/tree/feature/clojure_support">clojure branch</a>)</li>
 <li>documentation and samples</li>
 </ul><h2>
 <a name="thanks" class="anchor" href="#thanks"><span class="octicon octicon-link"></span></a>Thanks</h2>
