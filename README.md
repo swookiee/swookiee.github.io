@@ -174,7 +174,6 @@ graphiteReporterConfiguration:
 ```
 
 Example Screenshot of some made up traffic:
-
 ![graphite](https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/graphite.png)
 
 ## Swagger
@@ -198,8 +197,8 @@ public interface Status {
 The following steps are important to let swookiee deliver you swagger api documentation:
 
 1. Make sure you have the `maven-swagger-plugin` configured properly and you are able to see generated swagger json files? Also make sure that the `<basePath>/services</basePath>` is set according to your configuration. Otherwise you won’t be able to test you API.
-2. Is the generated json part of your bundle/artefact/`.jar`?
-3. Add the `X-Swagger-Documentation` header in you `MANIFEST.MF` or your `maven-bundle-plugin` configuration to point to the documentation folder inside the `jar`, such as: `X-Swagger-Documentation: /swagger`. Additionally change the `Bundle-Classpath` to include the given folder.
+2. Is the generated json part of your bundle/artefact/`.jar`? Is the folder accessable from within the Bundle?  Set the  the `Bundle-Classpath` to include the documentation folder.
+3. Add the `X-Swagger-Documentation` header in you `MANIFEST.MF` or your `maven-bundle-plugin` configuration to point to the documentation folder inside the `jar`, such as: `X-Swagger-Documentation: /swagger`.
 
 After installing the bundle you will find the `swagger-ui` under `http://localhost:8080/apidocs/api`. Click on the small swookiee icon to see your documentation and test your API.
 
@@ -207,7 +206,10 @@ Screenshot of the sample:
 ![swagger](https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/swagger.png)
 
 ## Archetype(s) & Tooling & Samples
-TODO
+### Samples & Archetype
+* [Configuration](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration).
+* [Swagger](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.swagger).
+* [Archetype & Sample](https://github.com/swookiee/com.swookiee.archetype)
 
 ### Eclipse
 
@@ -215,7 +217,7 @@ TODO
 
 ## Todos
  * provide rpm, deb and other packages
- * support more JVM languages
+ * more JVM languages? (see [clojure branch](https://github.com/swookiee/com.swookiee.runtime/tree/feature/clojure_support))
  * documentation and samples
 
 ## Thanks
