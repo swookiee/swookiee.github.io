@@ -7,7 +7,7 @@ swookiee is a shaved wookiee and looks like this:
 
 ![shaved wookiee](http://www.gravatar.com/avatar/62cf8eb12029b66dfa837efa365f12b4?s=80)
 
-swookiee basically is a JVM Runtime for REST Services. It is lightweight (~13 MB) and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a Jersey 2.5, Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.
+swookiee basically is a JVM Runtime for REST Services. It is lightweight (~17 MB) and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a Jersey 2.6, Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.
 
 Our main goals are:
 * simplify exposing REST Services in the JVM
