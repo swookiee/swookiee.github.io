@@ -245,7 +245,7 @@ This can be achieved through setting the property <code>productionLogging</code>
 <li>Make sure you have the <code>maven-swagger-plugin</code> configured properly and you are able to see generated swagger json files? Also make sure that the <code>&lt;basePath&gt;/services&lt;/basePath&gt;</code> is set according to your configuration. Otherwise you won’t be able to test you API.</li>
 <li>Is the generated json part of your bundle/artefact/<code>.jar</code>? Is the folder accessable from within the Bundle?  Set the  the <code>Bundle-Classpath</code> to include the documentation folder.</li>
 <li>Add the <code>X-Swagger-Documentation</code> header in you <code>MANIFEST.MF</code> or your <code>maven-bundle-plugin</code> configuration to point to the documentation folder inside the <code>jar</code>, such as: <code>X-Swagger-Documentation: /swagger</code>.</li>
-</ol><p>After installing the bundle you will find the <code>swagger-ui</code> under <code>http://localhost:8080/apidocs/api</code>. Click on the small swookiee icon to see your documentation and test your API.</p>
+</ol><p>After installing the bundle you will find the <code>swagger-ui</code> under <code>http://localhost:8080/swagger/index.html</code>. Click on the small swookiee icon to see your documentation and test your API.</p>
 
 <p>Screenshot of the sample:
 <img src="https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/swagger.png" alt="swagger"></p>
