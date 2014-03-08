@@ -200,7 +200,7 @@ The following steps are important to let swookiee deliver you swagger api docume
 2. Is the generated json part of your bundle/artefact/`.jar`? Is the folder accessable from within the Bundle?  Set the  the `Bundle-Classpath` to include the documentation folder.
 3. Add the `X-Swagger-Documentation` header in you `MANIFEST.MF` or your `maven-bundle-plugin` configuration to point to the documentation folder inside the `jar`, such as: `X-Swagger-Documentation: /swagger`.
 
-After installing the bundle you will find the `swagger-ui` under `http://localhost:8080/apidocs/api`. Click on the small swookiee icon to see your documentation and test your API.
+After installing the bundle you will find the `swagger-ui` under `http://localhost:8080/swagger/index.html`. Click on the small swookiee icon to see your documentation and test your API.
 
 Screenshot of the sample:
 ![swagger](https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/swagger.png)
