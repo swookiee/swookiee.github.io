@@ -219,7 +219,7 @@ Screenshot of the sample:
  * documentation and samples
 
 ## Thanks
-Many thanks to Intuit Data Services for the support!
+Many thanks to Intuit Data Engineering \& Analytics for the support!
 
 [![intuit](http://about.intuit.com/about_intuit/press_room/intuit_logos/intuit_blue.gif)](http://intuit.com)
 
