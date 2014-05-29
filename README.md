@@ -214,12 +214,12 @@ Screenshot of the sample:
 ### Netbeans
 
 ## Todos
- * provide rpm, deb and other packages
- * more JVM languages? (see [clojure branch](https://github.com/swookiee/com.swookiee.runtime/tree/feature/clojure_support))
- * documentation and samples
- * Running swookiee programatically
- * Integration Test Tooling
- * Remote Client API to support more use-cases
+ - [ ] provide rpm, deb and other packages
+ - [ ] more JVM languages? (see [clojure branch](https://github.com/swookiee/com.swookiee.runtime/tree/feature/clojure_support))
+ - [ ] documentation and samples
+ - [ ] Running swookiee programatically
+ - [ ] Integration Test Tooling
+ - [ ] Remote Client API to support more use-cases
 
 ## Thanks
 Many thanks to Intuit Data Engineering \& Analytics for the support!
