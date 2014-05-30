@@ -96,7 +96,7 @@ public class MyExceptionMapper implements ExceptionMapper<MyException> {
 
 ## JSON logging output
 In case you want to use logstash and kibana to analyze your logs you might want to use JSON as an output format.
-This can be achieved through setting the property `productionLogging` to `true`.
+This can be achieved through setting the property `productionLogging` to `true`. To change the output folder configure `loggingDirectory` with your desired path. The output filename will be `osgi-json.log`. 
 
 ## Deployment and runtime management via REST
 [RFC-182](https://github.com/osgi/design/tree/master/rfcs/rfc0182)
