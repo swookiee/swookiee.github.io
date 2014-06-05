@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/swookiee/com.swookiee.runtime.png?branch=develop)](https://travis-ci.org/swookiee/com.swookiee.runtime)
+[![Build Status](https://travis-ci.org/swookiee/com.swookiee.runtime.svg?branch=develop)](https://travis-ci.org/swookiee/com.swookiee.runtime)
 
 ## What is swookiee*
 This is how a shaved wookiee could look like:
