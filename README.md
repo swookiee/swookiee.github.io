@@ -105,7 +105,7 @@ This can be achieved through setting the property `productionLogging` to `true`.
 The Swookiee Runtime can be configured programmatically and via the UI of the Web Console. 
 
 ### Programmatic Configuration
-The programmatic configuration can be done via an API on top of the OSGi Configuration Admin. The full sample can be found [here](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration)
+The programmatic configuration can be done via an API on top of the OSGi Configuration Admin. The full sample can be found [here](https://github.com/swookiee/swookiee-samples/tree/develop/config)
 
 Define a POJO with the components you want to configure. In this case we want to change the admin user credentials and the graphite reporter configuration:
 ```java
@@ -175,7 +175,7 @@ Example Screenshot of some made up traffic:
 ![graphite](https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/graphite.png)
 
 ## Swagger
-The above described REST Resource can be enriched using `swagger-annotations`. The full sample can be found [here](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.swagger).
+The above described REST Resource can be enriched using `swagger-annotations`. The full sample can be found [here](https://github.com/swookiee/swookiee-samples).
 
 We could add the `@Api` and `@ApiOperation` annotations to our sample service:
 ```java
@@ -205,8 +205,7 @@ Screenshot of the sample:
 
 ## Archetype(s) & Tooling & Samples
 ### Samples & Archetype
-* [Configuration](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.configuration)
-* [Swagger](https://github.com/swookiee/com.swookiee.sample/tree/develop/com.swookiee.sample.swagger)
+* [Configuration & Swagger](https://github.com/swookiee/swookiee-samples)
 * [Archetype & Simple REST Service](https://github.com/swookiee/com.swookiee.archetype)
 
 ### Eclipse
@@ -216,7 +215,6 @@ Screenshot of the sample:
 ## Todos
  - [ ] provide rpm, deb and other packages
  - [ ] more JVM languages? (see [clojure branch](https://github.com/swookiee/com.swookiee.runtime/tree/feature/clojure_support))
- - [ ] documentation and samples
  - [ ] Running swookiee programatically
  - [ ] Integration Test Tooling
  - [ ] Remote Client API to support more use-cases
