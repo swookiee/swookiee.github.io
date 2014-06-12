@@ -175,7 +175,7 @@ Example Screenshot of some made up traffic:
 ![graphite](https://raw.github.com/swookiee/swookiee.github.io/master/screenshots/graphite.png)
 
 ## Swagger
-The above described REST Resource can be enriched using `swagger-annotations`. The full sample can be found [here](https://github.com/swookiee/swookiee-samples).
+The above described REST Resource can be enriched using `swagger-annotations`. A full sample can be found [here](https://github.com/swookiee/swookiee-samples/tree/develop/demo.swagger).
 
 We could add the `@Api` and `@ApiOperation` annotations to our sample service:
 ```java
