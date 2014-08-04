@@ -5,7 +5,7 @@ This is how a shaved wookiee could look like:
 
 ![shaved wookiee](https://raw.github.com/swookiee/swookiee.github.io/master/images/swookiee.png)
 
-Swookiee basically is a JVM Runtime for REST Services. It is lightweight (~17 MB, yeah... "lightweight") and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a Jersey 2.9, Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.
+Swookiee basically is a JVM Runtime for REST Services. It is lightweight (~17 MB, yeah... "lightweight") and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a JAX-RS 2 (Jersey), Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.
 
 Our main goals are:
 * simplify exposing REST Services in the JVM
@@ -217,10 +217,9 @@ Screenshot of the sample:
  - [ ] more JVM languages? (see [clojure branch](https://github.com/swookiee/com.swookiee.runtime/tree/feature/clojure_support))
  - [ ] Running swookiee programatically
  - [ ] Integration Test Tooling
- - [ ] Remote Client API to support more use-cases
 
 ## Thanks
-Many thanks to Intuit Data Engineering \& Analytics for the support!
+Many thanks to Intuit Data Engineering \& Analytics (IDEA) for the support!
 
 [![intuit](http://about.intuit.com/about_intuit/press_room/intuit_logos/intuit_blue.gif)](http://intuit.com)
 
