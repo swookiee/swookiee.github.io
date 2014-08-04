@@ -36,7 +36,7 @@
 
 <p><img src="https://raw.github.com/swookiee/swookiee.github.io/master/images/swookiee.png" alt="shaved wookiee"></p>
 
-<p>Swookiee basically is a JVM Runtime for REST Services. It is lightweight (~17 MB, yeah... "lightweight") and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a Jersey 2.9, Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.</p>
+<p>Swookiee basically is a JVM Runtime for REST Services. It is lightweight (~17 MB, yeah... "lightweight") and includes libraries like guava, joda-time, metrics, etc. It also supports service implementation written in Groovy and Scala (+7MB each). It uses a JAX-RS 2 (Jersey), Jetty, Jackson stack on top of the Equinox OSGi runtime to serve REST Services. swookiee also provides multiple REST APIs to deploy and control services and components via REST.</p>
 
 <p>Our main goals are:</p>
 
@@ -273,11 +273,10 @@ This can be achieved through setting the property <code>productionLogging</code>
 <li>[ ] more JVM languages? (see <a href="https://github.com/swookiee/com.swookiee.runtime/tree/feature/clojure_support">clojure branch</a>)</li>
 <li>[ ] Running swookiee programatically</li>
 <li>[ ] Integration Test Tooling</li>
-<li>[ ] Remote Client API to support more use-cases</li>
 </ul><h2>
 <a name="thanks" class="anchor" href="#thanks"><span class="octicon octicon-link"></span></a>Thanks</h2>
 
-<p>Many thanks to Intuit Data Engineering &amp; Analytics for the support!</p>
+<p>Many thanks to Intuit Data Engineering &amp; Analytics (IDEA) for the support!</p>
 
 <p><a href="http://intuit.com"><img src="http://about.intuit.com/about_intuit/press_room/intuit_logos/intuit_blue.gif" alt="intuit"></a></p>
 
