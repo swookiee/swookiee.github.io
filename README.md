@@ -219,9 +219,9 @@ Screenshot of the sample:
  - [ ] Integration Test Tooling
 
 ## Thanks
-Many thanks to Intuit Data Engineering \& Analytics (IDEA) for the support!
+Many thanks to **Intuit Data Engineering \& Analytics** for the support!
 
-[![intuit](http://about.intuit.com/about_intuit/press_room/intuit_logos/intuit_blue.gif)](http://intuit.com)
+[![IDEA](https://raw.githubusercontent.com/swookiee/swookiee.github.io/master/images/idea_logo.jpg)](http://intuit.com)
 
 ## License
 The code is published under the terms of the [Eclipse Public License, version 1.0](http://www.eclipse.org/legal/epl-v10.html).
